@@ -6,10 +6,10 @@
 
 根据原论文的结论，我们对每个像素都可以列出一个线性方程：
 $$
-\forall p\in\Omega,\ |N_p|f_p-\sum_{q\in N_p\cap\Omega}f_q=\sum_{q\in N_p\cap\partial\Omega}f^*_q+\sum_{q\in N_p}v_{pq} \\
+\forall p\in\Omega,\ |N_p|f_p-\sum_{q\in N_p\cap\Omega}f_q=\sum_{q\in N_p\cap\partial\Omega}f^{'}_q+\sum_{q\in N_p}v_{pq} \\
 v_{pq}=g_p-g_q
 $$
-其中$f_p$表示当前像素，$|N_p|$表示当前像素有多少个相邻像素在背景图范围内，$f_q$表示其中一个相邻像素的值，$f_q^*$表示背景图中某相邻像素位置上的像素值，$v_{pq}$表示源图片在当前像素的梯度向量在 $pq$ 向量上的投影,$g$表示源图片的像素值。
+其中$f_p$表示当前像素，$|N_p|$表示当前像素有多少个相邻像素在背景图范围内，$f_q$表示其中一个相邻像素的值，$f_q^{'}$表示背景图中某相邻像素位置上的像素值，$v_{pq}$表示源图片在当前像素的梯度向量在 $pq$ 向量上的投影,$g$表示源图片的像素值。
 
 这样一来，方程左边是未知量，右边是已知量，对每个像素都列出这样一个方程后，我们可以发现方程数=未知量数，于是我们可以解这个线性方程组，最终得到所有的$f$值。
 
@@ -19,11 +19,11 @@ $$
 
 此project使用Python编写，使用Numpy和openCV库处理图像，并使用Scipy库进行方程组求解。在截取与克隆图像方面，此project使用openCV编写GUI，支持任意形状的ROI，并可以可视化地选择克隆的位置。
 
-<img src=".\Components\ROI.png" alt="ROI"  /><img src=".\mask.png" alt="mask" style="zoom:150%;" /><img src=".\Components\paste.png" alt="image-20230701135236129" style="zoom:50%;" />
+<img src="./Components/ROI.png" alt="ROI"  /><img src="./mask.png" alt="mask" style="zoom:150%;" /><img src="./Components/paste.png" alt="image-20230701135236129" style="zoom:50%;" />
 
 最终得到的结果如下：
 
-![result](.\result.png)
+![result](./result.png)
 
 起初运行时，图片的较暗处和较亮处（即明暗交界处）会发生明显的色彩错误，暗处会变为几乎白色，亮处会变为几乎黑色，因此经过输出方程的解发现是解得的像素值略低于0或略高于255，导致像素值溢出。长时间调试无果后，我发现溢出量并不大，对图片的最终质量起不到决定性效果，于是使用`Numpy.clip()`将解限制在0到255之间，最终获得了以上效果，基本令人满意。
 
