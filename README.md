@@ -19,14 +19,17 @@ $$
 
 此project使用Python编写，使用Numpy和openCV库处理图像，并使用Scipy库进行方程组求解。在截取与克隆图像方面，此project使用openCV编写GUI，支持任意形状的ROI，并可以可视化地选择克隆的位置。
 
-<img src="D:\CodeHome\CG\Project1 - possion image editing\Components\ROI.png" alt="ROI"  /><img src="D:\CodeHome\CG\Project1 - possion image editing\mask.png" alt="mask" style="zoom:150%;" /><img src="D:\CodeHome\CG\Project1 - possion image editing\Components\paste.png" alt="image-20230701135236129" style="zoom:50%;" />
+<img src=".\Components\ROI.png" alt="ROI"  /><img src=".\mask.png" alt="mask" style="zoom:150%;" /><img src=".\Components\paste.png" alt="image-20230701135236129" style="zoom:50%;" />
 
 最终得到的结果如下：
 
-![result](D:\CodeHome\CG\Project1 - possion image editing\result.png)
+![result](.\result.png)
 
 起初运行时，图片的较暗处和较亮处（即明暗交界处）会发生明显的色彩错误，暗处会变为几乎白色，亮处会变为几乎黑色，因此经过输出方程的解发现是解得的像素值略低于0或略高于255，导致像素值溢出。长时间调试无果后，我发现溢出量并不大，对图片的最终质量起不到决定性效果，于是使用`Numpy.clip()`将解限制在0到255之间，最终获得了以上效果，基本令人满意。
 
 ### 心得体会
 
 与一年前相比，我最大的变化是不再依赖于手把手的教学了。一年前面对这个项目时，我还认为需要连同各种数学和编程知识全部从底层开始学会才能真正完成这个项目，因此面对未知的巨大工作量和深入知识望洋兴叹。但是一年来，我认识到做一个项目并不需要在底层了解其全部，而只需要对特定工具的掌握，对问题的拆解以及多使用搜索引擎辅助自己。同时修读了CSC4140 计算机图形学课程以后我也对图形学有了基本的了解，对复杂的项目也能冷静对待，不容易心态爆炸，可以说此时面对这个项目我的心态已经发生了大转变。我对泊松图像编辑的了解并不比一年前多，但是通过分析深入，我却能逐渐攻克一年前束手无策的难题，心里感到十分快乐。
+
+目前此项目已上传至github [Project1---poisson-image-editing](https://github.com/i-cookie/Project1---poisson-image-editing)
+

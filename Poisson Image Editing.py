@@ -1,7 +1,7 @@
 import cv2
 from GUI_helpers import genMask
 from GUI_helpers import setRectPos
-from Possion_processor import Pos_processor
+from Poisson_processor import Pos_processor
 
 def inputData():
     print('Reading image...')
