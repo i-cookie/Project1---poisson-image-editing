@@ -1,0 +1,13 @@
+step 1. set source and target images
+
+replace the source and target images ('src.png' and 'tgt.png') in the ./Components folder.
+
+Step 2. Run the 'Poisson Image Editing.py'
+
+Step 3. Press and hold left mouse button to draw the ROI, you can redraw if you are not satisfied. Only the last ROI will be kept.
+
+Step 4. Press space to confirm ROI
+
+Step 5. Set the target region by clicking on the target image, you will see the region preview.
+
+Step 6. Press space to confirm and wait for the result. The intermediate images like mask and the result are saved.
